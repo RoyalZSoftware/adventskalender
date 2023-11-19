@@ -1,16 +1,23 @@
 # I assmebled a book with GitHub actions
+In the year 2020 I released a book, written with a friend, called "Next level Taschengeld".
+We were both tech nerds back then and decided to write the book completely in markdown with the assistance of git.
 
-I recently found this project and wanted to share it.
+I recently found this project again and wanted to share some lessons about it.
 
-Back in the days when I was writing a book about affiliate marketing called "Next level Taschengeld" ("Taschengeld" -> "Pocket money") which explains to you how my friend and I created affiliate sites that genereted some revenue.
+## About the book
+The word Taschengeld stands for pocket money in German. It is about building sustainable affiliate marketing websites within a niche, where not a lot of competitors exist.
 
-Although I am not behind the topic any more, the book creation was a great workflow for two devs that collaborated via git.
+Although I am not behind the topic any more today, it taught me a lot about writing structured and expressing my thoughts as simple as possible.
 
-## Building locally pdf and epub
-Building the book locally requires a few programs:
-- pdflatex (pdfengine to convert pandoc formats to pdf)
+## Creating a pdf and epub
+We wanted to bundle all the markdown files, located in the `src` directory of the repository, into a single `pdf` and `epub`.
+
+For this I opted for the following tool stack:
 - pandoc (converts input formats like markdown to other formats)
-- GNU Make
+- pdflatex (pdfengine to convert pandoc formats to pdf)
+- GNU Make (to fixate the pandoc commands for everybdoy)
+
+### The final makefile
 
 ```Makefile
 all: all-before dist/book.epub dist/book.pdf
@@ -39,7 +46,7 @@ clean:
 	rm -r dist
 ```
 
-## GitHub action
+### Bundling this into a GitHub action
 The GitHub action is much simpler. It just runs make and looks like this
 
 ```yml
@@ -68,15 +75,19 @@ jobs:
           path: dist/
 ```
 
-It uses the pandoc/latex container which is perfectly fine and comes with everything except make.
+It uses the `pandoc/latex` container, which ships with everything I need besides make.
 
-I install make on that container and then I run make.
+To solve the puzzle, I just needed to install make on that container and fire!
 
-The generated artifacts are then published to the GitHub repository.
+With the action `actions/upload-artifact` the pipeline uploads the generated artifacts to the internal store, where they can be downloaded.
 
 ## Template repository
-You can check out following repository, that reproduced it with public content.
+Are you planning to step into my footsteps? You can find the repository here and reuse the code.
 
 https://github.com/RoyalZSoftware/the-history-of-sever-side-javascript-book/tree/pandoc-template
 
-If you ever need to assemble something
+## Conclusion
+The book didn't sell. But it was a great project for learning how to write more structured and to learn about pandocs incredible superpowers.
+
+Did you like the post?
+Share your thoughts in the comments and consider subscribing to the newsletter.
