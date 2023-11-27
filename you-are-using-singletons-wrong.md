@@ -10,20 +10,25 @@
 INTRO
 This might shock you, but I bet you are using Singletons wrong. With this post I will talk about the only valid use case and the more often practiced wrong usages of the singleton pattern.
 
-BODY
+## Problem
 Singletons itself are not bad. The problem is the reason why they are being used.
-Singletons should only exist to have just one instance of a certain object running at the same time.
-More often it is abused to have access to a certain object anywhere in the code base without further thinking or injecting dependencies.
-That brings me to the solution. Dependency injection is the better alternative, that requires a bit of code know how.
-With little experience I've found myself using more and more static methods on classes or plain singletons, just because I wanted to have access from it.
-With bad code design it's easy to verfallen der versuchung von Singletons. Getting over singletons requires some code design experience and some time put into the actual code design.
+Singletons should only by used to ensure, that there is only one instance of an object.
+More often however, it is abused to access a certain object anywhere in the code base without further thinking what actor in the system would take care of providing me with this dependency.
 
+## Solution
+That brings me to the solution. Dependency injection is the better alternative, that requires a bit more know how.
+With little experience, I've found myself using more and more static methods on classes or plain singletons, just because I wanted access real fast.
+With bad code design it's easy to fall for Singletons. Getting over them requires some code design experience and some time put into the actual code design.
+
+## Further reasons why Singletons are bad
 Singletons are bad, because they make testing impossible or at least nearly impossible.
 If you have a call to an Singleton in any of your methods, the unit test would have to override this certain piece just to make it work.
 
+## A good example for Singletons
 There are certain cases, where you really want to access a singleton, for example the File object in java;
 
-In that case however you would want to abstract it further, so that you can change the actual implementation of creating a file with a dummy method for testing.
+### Anyway: abstract!
+In that case however you still would want to abstract it further. So that you can change the actual implementation of creating a file with a dummy method for testing.
 
 ```typescript
 interface ReportOutputAdapter {
@@ -64,3 +69,5 @@ class ReportCurrentRevenue {
 ## Conclusion
 If you want to use singletons, then make sure it's for the correct reason of just having a single instance running at the same time.
 For me this was a great issue with legacy code. Getting such code inside a test scenario is a real pain and requires great effort.
+
+Did you like the post? Subscribe to the RoyalZSoftware newsletter.
