@@ -1,18 +1,25 @@
-# When to start versioning?
-Last post was about SemVer. But when do you really start versioning a software? With this piece I want to show you my approach.
+# When to start versioning
+This was probably the most interesting question I had back then, when I wasn't used to it.
 
-There is something called rapid development. The initial versions for this phase start with a `0` major version (`0.X.X`)
+## When to start
+Obviously: Starting right away with the correct SemVer scheme would leave you with Version `83.3.0` after a few months of development.
+The actual problem we are looking at, is that the `API` is not stable at the beginning.
+That's where the term `rapid development` enters the room.
 
-It only makes sense to version, once the software is somewhat stable. That means, if you are working on the first thousand lines of code, it might not be sinnvoll to create a version from there on.
-Just because the interfaces are most likely to change.
+### Rapid development phase
+In the rapid development phase of a project, nothing is stable. Breaking changes can be introduced every once in a while and there is no guarantee that the client code written yesterday, will work tomorrow.
 
-I have worked on royalzsoftware/royal-data-ts and documented breaking changes in the changelog.md
+### Key takeaway: Start after rapid development
+It only makes sense to version, once the software is somewhat stable. That means, if you are working on the first thousand lines of code, it might not make sense to create a version from there on.
 
-I just released versions, because I had a client project where I implemented it.
+### Real world example
+I have worked on `royalzsoftware/royal-data-ts` and documented breaking changes in the `CHANGELOG.md`.
+
+The only real reason why I started versioning early on, was because I had a client project, where I wanted to implement it.
 
 ## Signalizing the stable API
-You can signal your clients, that your API is stable, by incrementing the MAJOR version to `1` and announce it with this.
-
+It is convention to release version `1.0.0` once the `API` is stable. You would use `0.X.X` for the rapid development phase.
 
 ## Conclusion
-You're taking a step in the right direction by looking for ways to use SEMVER.
+Great that you've read this short post. With that you're taking a step in the right direction of versioning your software properly.
+Key takeaway: Start versioning once your API is stable.
