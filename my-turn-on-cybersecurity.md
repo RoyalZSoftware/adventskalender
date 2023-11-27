@@ -8,22 +8,22 @@
 		1. If you ever loose your smartphone, all of your 2fa will be lost, unless you've saved the secret to some secure place
 
 INTRO
-Cybersecurity has bekommen very important over the years. More powerful computers force you to have immer longer passwords.
-This post shall give you a rough introduction on how i handle cyber security and the products I am using for it (this is not sponsored. / unfortunately :D)
+Cybersecurity has become very important over the years. More powerful computers force you to have increasingly longer passwords.
+This post shall give you a rough introduction on how I handle cyber security and the products I am using for it (this is not sponsored. / unfortunately :D)
 
 ## Password management
-I have dozens of accounts, just like you. To manage the credentials for all of them I use a password manager (bitwarden) with multiple factors to be sure no one will get into it. (I will come to them in just a bit)
+I have dozens of accounts, just like you. To manage the credentials for all of them, I use a password manager (Bitwarden) with multiple factors, to be sure no one will get into it. (I will come to them in just a bit)
 
 Please do not go the wrong way and use the same password over and over again.
 
 ## 2FA is a requirement
-Having a second factor is required to have a safe experience in the internet. It makes getting into your account much harder, because the second factor is not just a password that you enter on some site and that stays the same.
-Even if somebody found out your entered 2FA code, it's very unlikely that somebody can zurückrechnen the secret of it.
+Having a second factor is more than just recommended to have a safe browsing experience.
+It makes getting into your account much harder, because the second factor is not just a password that you enter on some site and that stays the same. It is a constantly changing code depending on the current time that can not be reverse calculated.
 
-That's because there are multiple secrets that can start with the code that you've entered.
+Even if somebody found out your entered 2FA code with the exact time of your login, it's very unlikely that somebody can reverse calculate the secret of it.
 
 ### Storing 2FA on smartphone or even in the cloud - bad idea
-The most common way of approaching 2fa is with Google or microsoft authenticator app. While this is in general better than not having a second factor, it's not necessarily great.
+The most common way of approaching 2fa is with Google or Microsoft authenticator app. While this is in general better than not having a second factor, it's not great.
 
 The best case to handle the TOTP token storage is on a hardware token, that you carry with you. In my case:
 

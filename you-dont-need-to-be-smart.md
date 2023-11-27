@@ -23,3 +23,6 @@ Another real life story, from one of my closest friends. "I need motiviation". I
 
 Let's say I want to graduate in a specific subject and I have to take a test for it. I really want it and taking the test is the only way to achieve this. For the test I need to learn a lot.
 You can't just say "yes I will do it when I have the motiviation". In such cases you are the only person who is responsible for achieving the goal and you won't be able to blame somebody else.
+
+Waiting for the motiviation to arise will make you waste a lot of precious time. There are days when I do not want to do something, but I still do it. Because that's the only way to achieve a specific goal.
+
