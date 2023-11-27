@@ -6,9 +6,11 @@
 6. It makes the construction of an object really handy and it's quite often useful if you have a lot of fields that can be configured, but the constructor would be overkill and you want a uniform way to create them.
 
 # The builder pattern
-You've used it and I think you were as impressed as me, the first time you've seen it. This post is about the builder pattern and I want you to know how to implement it.
+You've used it and I think you were as impressed as me, the first time you've seen it.
+This post is about the builder pattern and I want you to know how to implement it.
 
-The builder pattern is a creational pattern and is used to create objects with ease.
+## What is the builder pattern
+The builder pattern is a creational pattern and is used to create objects, that have large constructors, with ease.
 
 Imagine you have a `Car` model that requires a lot of parameters.
 
@@ -27,10 +29,11 @@ const hyundaiITwenty = new Car("I20", "Hyundai", undefined, "blue");
 I left the `numberOfDoors` to undefined, because I want it to take the default.
 Do you see an issue alrady?
 
-The problem might not be obvious with just for parameters. But what if the Car has 10 parameters?
-You're most likely to let most of them undefined.
+The problem might not be obvious with just four parameters. But what if the `Car` has 14 parameters?
+You're most likely to leave a lot of them undefined.
 
 That's where the builder pattern comes in handy.
+With it you can just override certain fields.
 
 ```typescript
 class CarBuilder {
@@ -55,11 +58,33 @@ class CarBuilder {
 }
 ```
 
-With this carbuilder we can use following call chain
+With this `CarBuilder` we can use following call chain
 ```typescript
 const car = new CarBuilder().withColor('blue').withNumberOfDoors(2).build("911", "Porsche");
 ```
 
+### A note on encapsulation
+You should make the constructor of the actual `Car` object `private`. The `CarBuilder` should be the only class that can create a `Car` object.
+
+In most languages this is done by utilising nested classes. In Typescript, although it's not that obvious, this is possible too.
+
+```typescript
+class Car {
+    // truncated
+    static CarBuilder = class {
+        // truncated
+    };
+
+    private constructor(/*truncated*/) {
+
+    }
+}
+
+// Usage
+Car.CarBuilder.build(); // works
+```
+
+
 ## Conclusion
 It's useful to know this pattern, especially with objects that have gigantic constructors.
-Subscribe to the RoyalZSoftware newsletter
+Subscribe to the RoyalZSoftware newsletter.

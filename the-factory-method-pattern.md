@@ -3,15 +3,20 @@
 3. A great use case for example is an http client factory. A http client factory might return an unauthorizedhttpclient or an authorizedclient. Depending on the currently set authorization details.
 4. Its great benefit is that the object creation is central and whenever a new case occurs, you can just change one place, instead of deciding at every individual place
 
-## The Factory method pattern
+# The Factory method pattern
+My favorite pattern and one of the first ones I've learned. I'm presenting to you: the factory method pattern.
+
+## What is the Factory (Method) pattern?
 This one is straight forward. The factory method is another creational pattern. It takes arguments and returns a specifc implementation.
 
-Great use cases include the HttpClient.
+The use case becomes clear when thinking about `HttpClients`.
 
-Imagine that you have two HttpClients. One is the default and the other one is an authenticated one that sends a specific Authorization Header with every request.
+Imagine that you have two HttpClients. One is the default and the other one is an authenticated one that sends a specific `Authorization` Header with every request.
 
-With a factory method you can do exactly this.
+Without the pattern you are forced to define the logic for what client to use in every location that requires the `HttpClient`.
+Or you define a central place, that creates a HttpClient for you, depending on a specific business logic.
 
+Take a look at the following example.
 ```typescript
 interface HttpClient {
     send(method: string, url: string, headers: any): Promise<any>;
@@ -43,9 +48,11 @@ function HttpClientFactory(token?: string): HttpClient {
 }
 ```
 
-With this the program that uses this httpClientFactory, does not care whether it's authenticated or not. It just assumes that his request arrives without errors. It doesnt care that we need him to have an authenticated http client to get through access control restrictions.
+The callee of `httpClientFactory`, does not care whether it's authenticated or not. It just assumes that his request arrives without errors.
+It doesnt care that we need him to have an authenticated http client to get through access control restrictions.
 
-You can take this one step further and save the token into a class state
+## Transform into Factory Pattern
+You can take this one step further and save the token into its own class with state. This is known as the `Factory pattern`.
 ```typescript
 class HttpClientFactory {
     public token?: string;
@@ -60,16 +67,21 @@ class HttpClientFactory {
     }
 }
 ```
-With this you can do following
+
+### Usage
+Take a look at this great use case.
 ```typescript
 const httpFactory = new HttpClientFactory();
 
 // httpFactory.getInstance() will return an unauthenticated client right now.
-httpFactory.token = httpFactory.getInstance().send('POST', '/authenticate', {}) // Fetch Bearer token and store it on the httpFactory.
+const token = httpFactory.getInstance().send('POST', '/authenticate', {}) // Fetch Bearer token
+
+httpFactory.token = token; // store the token field on the httpFactory.
 
 // and now we have an authenticated instance here.
-httpFactory.getInstance().
+httpFactory.getInstance().//truncated
 ```
 
 ## Conclusion
-The factory method and factory patterns are really powerful and can be used in a lot of cases.
+The `factory method` and `factory` patterns are really powerful and can be used in a lot of cases.
+They should be used early on as a step into clear code direction.
